@@ -1,0 +1,10 @@
+<div class="container py-3">
+  <app-shared-table
+    [columnList]="columnList"
+    [dataSource]="dataSource"
+    [isManageColumn]="true"
+    [isPagination]="true"
+    (actionList)="performAction($event)"
+  ></app-shared-table>
+</div>
+

@@ -1,0 +1,142 @@
+.filter {
+  display: flex;
+  flex-direction: column;
+  opacity: 0.7;
+  width: 15%;
+  position: fixed;
+  z-index: 1050;
+  background-color: white;
+  padding: 1rem;
+  i {
+    cursor: pointer;
+  }
+  @media only screen and (max-width: 768px) {
+    opacity: 1;
+    width: 25%;
+  }
+}
+
+.closeIcon {
+  float: right;
+}
+
+input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  background-color: white;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.tabCol {
+  display: none;
+}
+
+.showHide {
+  width: 16.8%;
+  position: absolute;
+  top: 57%;
+  padding: 11px;
+  background-color: white;
+  box-shadow: 0px 1px 13px -5px;
+  @media only screen and (max-width:768px) {
+    width: 36%;
+  }
+}
+
+.table td,
+.table th {
+  min-width: 155px;
+  @media only screen and (max-width: 768px) {
+    min-width: 130px;
+  }
+}
+
+th {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+.table-wrapper {
+  overflow-x: auto;
+  overflow-y: auto;
+  width: 70%;
+  height: 481px;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
+}
+
+#icons {
+  color: gray;
+  font-size: 14px;
+  padding: 3px;
+}
+.actions {
+  width: 70%;
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.filterIcon {
+  color: black;
+  margin-left: 1em;
+}
+
+.pagination {
+  float: "right";
+}
+
+.table-scroll thead th {
+  color: black;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+/* safari and ios need the tfoot itself to be position:sticky also */
+.table-scroll tfoot,
+.table-scroll tfoot th,
+.table-scroll tfoot td {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  // background: #666;
+  color: #fff;
+  z-index: 4;
+}
+
+th:last-child {
+  position: -webkit-sticky;
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  // background: #ccc;
+}
+thead th:last-child,
+tfoot th:last-child {
+  z-index: 5;
+}
+
+td:last-child {
+  position: -webkit-sticky;
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  background: white;
+}
+thead td:last-child,
+tfoot td:last-child {
+  z-index: 5;
+}
+
+::ng-deep .ngx-pagination {
+  padding: 0 !important;
+}

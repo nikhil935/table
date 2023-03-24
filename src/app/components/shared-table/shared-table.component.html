@@ -1,0 +1,119 @@
+<div class="table-wrapper m-auto table-scroll">
+  <table class="table table-responsive main-table table-bordered">
+    <thead>
+      <tr>
+        <th
+          *ngFor="let item of defaultColumn; let i = index"
+        >
+          {{ item.key }}
+          <i
+            [ngClass]="getSortIcon('item.key')"
+            (click)="sort(item.key)"
+            *ngIf="item.isSort"
+          ></i>
+          <i
+            *ngIf="item.isFilter"
+            class="fa fa-filter filterIcon"
+            aria-hidden="true"
+            (click)="openInput($event, item.key)"
+          ></i>
+          <div *ngIf="item.isFilter && filterType === item.key">
+            <div class="filter">
+              <div>
+                <i
+                  class="fa fa-times-circle closeIcon"
+                  aria-hidden="true"
+                  (click)="close($event)"
+                ></i>
+              </div>
+              <input type="text" [(ngModel)]="searchText" />
+            </div>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class="tbodyfixed"
+        *ngFor="
+          let data of dataSource
+            | paginate
+              : {
+                  itemsPerPage: selectedEntryOption,
+                  currentPage: page,
+                  totalItems: totalRecords
+                }
+            | filter : searchText
+        "
+      >
+        <td
+          *ngFor="let items of defaultColumn; let i = index"
+          [ngStyle]="items.style?.width ? { width: items.style?.width} : {width: '20rem'}"
+          
+        >
+          <span *ngIf="items.key !== 'actions'">
+            {{ data[items.key] ? data[items.key] : null }}</span
+          >
+          <span *ngIf="items.key == 'actions'">
+            <span *ngFor="let item of defaultColumn">
+              <i
+                *ngFor="let action of item.data"
+                (click)="performAction(action)"
+                [class]="action.icon"
+                [hidden]="action.isEnabled"
+                id="icons"
+              >
+              </i> </span
+          ></span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row actions mx-auto pt-2">
+  <div class="col-md-6 pb-2">
+    
+    <div class="showHide" *ngIf="manageFilter">
+      <i
+        class="fa fa-times-circle closeIcon"
+        aria-hidden="true"
+        (click)="close($event)"
+      ></i>
+      <div *ngFor="let item of columnList; let i = index">
+        <input
+          type="checkbox"
+          (change)="isShowHide(item)"
+          [checked]="!item.isDisabled"
+        />
+        {{ item.key }}
+      </div>
+    </div>
+    <button
+      (click)="manageColumn($event)"
+      class="btn btn-secondary"
+      *ngIf="isManageColumn"
+    >
+      Manage Columns
+    </button>
+    
+    <select (change)="onSelectedOption($event)" class="mx-2">
+      <option *ngFor="let option of options" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+  
+    <label>Results: {{ selectedEntryOption }} of {{ totalRecords }}</label>
+    </div>
+  <div class="col-md-6">
+    <pagination-controls
+    *ngIf="isPagination"
+    (pageChange)="page = $event"
+    (click)="paginationChange($event)"
+  ></pagination-controls>
+  </div>
+
+</div>
+<!-- <div class="actions m-auto py-4">
+
+
+</div> -->
