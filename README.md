@@ -1,6 +1,8 @@
 # Table
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+ ## This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.0.
+ ## This project consists of table which is having fucntionalities like Filter , Sorting, Show/Hide Column,Pagination,Action with view/delete and edit.
+ ## This project is responsive and compatible to all OS.
 
 ## Development server
 
